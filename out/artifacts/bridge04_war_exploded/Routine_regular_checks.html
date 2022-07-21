@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>常规定期检查--梁式桥</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="css/Frequent2.css" rel="stylesheet">
+    <link href="css/newStyle.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function form_show(){
+            $("#form_2").show();
+        }
+        // 梁桥
+        function bridge_type1(table_1,table_2,table_3,table_4) {
+            //上部结构
+            for (var i = 0; i < table_2.rows.length; i++) {
+                if ((i != 0 && i != 1) && (i <= 30 || i >= 38)) {
+                    table_2.rows[i].style.display = "none";
+                }
+            }
+
+            //桥墩
+            for (var i = 0; i < table_3.rows.length; i++) {
+                if ((i != 0 && i != 1) && (i >= 29 )) {
+                    table_3.rows[i].style.display = "none";
+                }
+            }
+            //桥台
+            for (var i = 0; i < table_4.rows.length; i++) {
+                if ((i != 0 && i != 1) && ( i >= 34)) {
+                    table_4.rows[i].style.display = "none";
+                }
+            }
+        }
+        // 悬臂+挂梁
+        function bridge_type6(table_1,table_2,table_3,table_4){
+            //上部结构
+            for (var i = 0; i < table_2.rows.length; i++) {
+                if ((i != 0 && i != 1) && (i <= 43 || i >= 49)) {
+                    table_2.rows[i].style.display = "none";
+                }
+            }
+            //桥墩
+            for (var i = 0; i < table_3.rows.length; i++) {
+                if ((i != 0 && i != 1) && (i >= 29 )) {
+                    table_3.rows[i].style.display = "none";
+                }
+            }
+            //桥台
+            for (var i = 0; i < table_4.rows.length; i++) {
+                if ((i != 0 && i != 1) && ( i >= 34)) {
+                    table_4.rows[i].style.display = "none";
+                }
+            }
+
+        }
+        // 桁架桥
+        function bridge_type2(){
+            //上部结构
+
+
+            // 下部结构
+
+        }
+        //拱桥--无拱上构造
+        function bridge_type3(){
+            //上部结构
+
+
+            // 下部结构
+
+        }
+        //拱桥--有拱上构造
+        function bridge_type4(){
+            //上部结构
+
+
+            // 下部结构
+
+        }
+        //刚构桥
+        function bridge_type5(){
+            //桥面系
+
+            //上部结构
+
+
+            //下部结构
+
+        }
+        // 人行天桥--梁桥
+        function bridge_type7(){
+            //桥面系
+
+            //上部结构
+
+
+            //下部结构
+
+        }
+        // 人行天桥--钢桁架桥
+        function bridge_type8(){
+            //桥面系
+
+            //上部结构
+
+
+            //下部结构
+
+        }
+    </script>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ><a class="icon-bar" href="http://localhost:8070/Map.html">桥梁检测系统</a>
+                </li>
+                <li class="active"><a href="#">基本管理</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a>欢迎您,admin</a>
+                </li>
+                <li><a href="#">安全退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="check_div_1">
+    <from>
+        <table>
+            <tr>
+                <td>桥梁名称<input id="bridge_name" type="text"></td>
+                <td>检查单位<input id="check_unit" type="text"></td>
+            </tr>
+        </table>
+        <div>
+            <button id="btn" type="button">确定</button>
+        </div>
+        <script>
+            $("#btn").on("click",function(){
+                var bridge_name=$("#bridge_name").val();
+                var check_unit=$("#check_unit").val();
+                var table_0=document.getElementById("table_0");
+                alert(bridge_name+" "+check_unit);
+                var url="/getRegularCheckList";
+                var d={
+                    "bridge_name":bridge_name,
+                    "check_unit":check_unit
+                }
+                // bridge_type1(table_1,table_2,table_3,table_4);
+
+                $.ajax({
+                    type:"post",
+                    url:url,
+                    dataType:"json",
+                    data:d,
+                    success:function (data){
+                        if(data[0]==null){
+                            alert("该桥梁不存在");
+                        }
+                        else{
+                            form_show();
+                            var rows=table_0.rows;
+                            for(var j=rows.length;j>0;j--){
+                                rows[j].remove();
+                            }
+                            var rowhead = document.createElement('tr');
+                            rowhead.innerHTML="<td colSpan='6'>桥梁编号</td>"+"<td colSpan='3'>"+data[0]+"</td>"
+                                +"<td colSpan='6'>检查单位</td>"+"<td colSpan='3'>"+check_unit+"</td>";
+                            table_0.appendChild(rowhead);
+                            if(data[0]=="1"){
+                                bridge_type1(table_1,table_2,table_3,table_4);
+                            }else if(data[0]=="2"){
+                                bridge_type6(table_1,table_2,table_3,table_4);
+                            }
+                        }
+                    }
+                })
+            })
+        </script>
+    </from>
+</div>
+
+
+
+<div id="form_2" style="display: none">
+<form id="addInfoForm">
+    <table id="table_0" name="桥面名称">
+        <thead>
+<!--        <tr>-->
+<!--            <th colspan="6">桥梁名称（编号）</th>-->
+<!--            <td colspan="6"></td>-->
+<!--            <th colspan="6">巡检单位</th>-->
+<!--            <td colspan="6"></td>-->
+<!--        </tr>-->
+        </thead>
+    </table>
+
+
+    <table id="table_1" name="桥面系">
+        <thead>
+        <tr>
+            <td colspan="24">桥面系</td>
+        </tr>
+        <tr>
+            <td colspan="2">结构名称</td>
+            <td colspan="4">损坏类型</td>
+            <td colspan="6">损坏程度</td>
+            <td colspan="12">备注</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <div name="桥面铺装">
+            <tr id="table_1_row1">
+                <td rowspan="11" colspan="2">桥面铺装</td>
+            </tr>
+            <tr id="table_1_row1_type1">
+                <td colspan="4">网裂或龟裂</td>
+                <td colspan="6">
+                    <select name="桥面系；桥面铺装；网裂或龟裂">
+                        <option value="无">无</option>
+                        <option value="<3%>"><3%</option>
+                        <option value="3%~10%">3%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+                <td rowspan="11" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_1_row1_type2">
+                <td colspan="4">波浪及车辙</td>
+                <td colspan="6">
+                    <select name="桥面系；桥面铺装；波浪及车辙">
+                        <option value="无">无</option>
+                        <option value="<3%"><3%</option>
+                        <option value="3%~10%">3%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row1_type3">
+                <td colspan="4">坑槽</td>
+                <td colspan="6">
+                    <select name="桥面系；桥面铺装；坑槽">
+                        <option value="无">无</option>
+                        <option value="<3%"><3%</option>
+                        <option value="3%~10%">3%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row1_type4">
+                <td colspan="4">碎裂或破碎</td>
+                <td colspan="6">
+                    <select name="桥面系；桥面铺装；碎裂或破碎">
+                        <option value="无">无</option>
+                        <option value="<3%"><3%</option>
+                        <option value="3%~10%">3%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row1_type5">
+                <td colspan="4">坑洞</td>
+                <td colspan="6">
+                    <select name="桥面系；桥面铺装；坑洞">
+                        <option value="无">无</option>
+                        <option value="1个">1个</option>
+                        <option value="2个">2个</option>
+                        <option value=">=3个">>=3个</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row1_type6">
+                <td colspan="4">桥面贯通横缝</td>
+                <td colspan="6">
+                    <select name="桥面系；桥面铺装；桥面贯通横缝">
+                        <option value="无">无</option>
+                        <option value="半贯通">半贯通</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row1_type7">
+                <td colspan="4">桥面贯通纵缝</td>
+                <td colspan="6">
+                    <select name="桥面系；桥面铺装；桥面贯通纵缝">
+                        <option value="无">无</option>
+                        <option value="半贯通">半贯通</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row1_type8">
+                <td colspan="4">人行天桥桥面铺装变形</td>
+                <td colspan="6">
+                    <select name="桥面系；桥面铺装；人行天桥桥面铺装变形">
+                        <option value="无">无</option>
+                        <option value="<3%"><3%</option>
+                        <option value="3%~10%">3%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row1_type9">
+                <td colspan="4">人行天桥桥面铺装磨损</td>
+                <td colspan="6">
+                    <select name="桥面系；桥面铺装；人行天桥桥面铺装磨损">
+                        <option value="无">无</option>
+                        <option value="<3%"><3%</option>
+                        <option value="3%~10%">3%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row1_type10">
+                <td colspan="4">人行天桥桥面铺装防滑能力</td>
+                <td colspan="6">
+                    <select name="桥面系；桥面铺装；人行天桥桥面铺装防滑能力">
+                        <option value="足够">足够</option>
+                        <option value="临界">临界</option>
+                        <option value="不足">不足</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="桥头平顺">
+            <tr  id="table_1_row2">
+                <td rowspan="3" colspan="2">桥头平顺</td>
+            </tr>
+            <tr id="table_1_row2_type1">
+                <td colspan="4">桥头沉降</td>
+                <td colspan="6">
+                    <select name="桥面系；桥头平顺；桥头沉降">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="明显">明显</option>
+                    </select>
+                </td>
+                <td rowspan="3" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_1_row2_type2">
+                <td colspan="4">台背下沉</td>
+                <td colspan="6">
+                    <select name="桥面系；桥头平顺；台背下沉">
+                        <option value="无">无</option>
+                        <option value="<2cm"><2cm</option>
+                        <option value="2cm~5cm">2cm~5cm</option>
+                        <option value=">5cm">>5cm</option>
+                    </select>
+                </td>
+
+            </tr>
+        </div>
+
+        <div name="伸缩装置">
+            <tr id="table_1_row3">
+                <td rowspan="10" colspan="2">伸缩装置</td>
+            </tr>
+            <tr id="table_1_row3_type1">
+                <td colspan="4">接缝处铺装碎边</td>
+                <td colspan="6">
+                    <select name="桥面系；伸缩装置；接缝处铺装碎边">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+                <td rowspan="10" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_1_row3_type2">
+                <td colspan="4">螺帽松动</td>
+                <td colspan="6">
+                    <select name="桥面系；伸缩装置；螺帽松动">
+                        <option value="无">无</option>
+                        <option value="1个~5个">1个~5个</option>
+                        <option value=">5个">>5个</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row3_type3">
+                <td colspan="4">缝内沉积物阻塞</td>
+                <td colspan="6">
+                    <select name="桥面系；伸缩装置；缝内沉积物阻塞">
+                        <option value="无">无</option>
+                        <option value="少量">少量</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row3_type4">
+                <td colspan="4">止水带破损、老化</td>
+                <td colspan="6">
+                    <select name="桥面系；伸缩装置；止水带破损、老化">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row3_type5">
+                <td colspan="4">钢材料破损</td>
+                <td colspan="6">
+                    <select name="桥面系；伸缩装置；钢材料破损">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row3_type6">
+                <td colspan="4">接缝处高差</td>
+                <td colspan="6">
+                    <select name="桥面系；伸缩装置；接缝处高差">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="明显">明显</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row3_type7">
+                <td colspan="4">钢材料翘曲变形</td>
+                <td colspan="6">
+                    <select name="桥面系；伸缩装置；钢材料翘曲变形">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row3_type8">
+                <td colspan="4">结构缝宽异常</td>
+                <td colspan="6">
+                    <select name="桥面系；伸缩装置；结构缝宽异常">
+                        <option value="正常">正常</option>
+                        <option value="略有变化">略有变化</option>
+                        <option value="卡死">卡死</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row3_type9">
+                <td colspan="4">伸缩缝处异常声响</td>
+                <td colspan="6">
+                    <select name="桥面系；伸缩装置；伸缩缝处异常声响">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="排水系统">
+            <tr  id="table_1_row4">
+                <td rowspan="5" colspan="2">排水系统</td>
+            </tr>
+            <tr id="table_1_row4_type1">
+                <td colspan="4">泄水管阻塞</td>
+                <td colspan="6">
+                    <select name="桥面系；排水系统；泄水管堵塞">
+                        <option value="无">无</option>
+                        <option value="<5%"><5%</option>
+                        <option value="5%~20%">5%~20%</option>
+                        <option value=">20%">>20%</option>
+                    </select>
+                </td>
+                <td rowspan="5" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_1_row4_type2">
+                <td colspan="4">残缺脱落</td>
+                <td colspan="6">
+                    <select name="桥面系；排水系统；残缺脱落">
+                        <option value="无">无</option>
+                        <option value="<5%"><5%</option>
+                        <option value="5%~20%">5%~20%</option>
+                        <option value=">20%">>20%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row4_type3">
+                <td colspan="4">桥面积水</td>
+                <td colspan="6">
+                    <select name="桥面系；排水系统；桥面积水">
+                        <option value="无">无</option>
+                        <option value="个别处">个别处</option>
+                        <option value="多处">多处</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row4_type4">
+                <td colspan="4">防水层</td>
+                <td colspan="6">
+                    <select name="桥面系；排水系统；防水层">
+                        <option value="完好">完好</option>
+                        <option value="渗水">渗水</option>
+                        <option value="老化">老化</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="人行道">
+            <tr id="table_1_row5">
+                <td rowspan="4" colspan="2">人行道</td>
+            </tr>
+            <tr id="table_1_row5_type1">
+                <td colspan="4">网裂</td>
+                <td colspan="6">
+                    <select name="桥面系；人行道；网裂">
+                        <option value="无">无</option>
+                        <option value="<10%"><10%</option>
+                        <option value="10%~20%">10%~20%</option>
+                        <option value=">20%">>20%</option>
+                    </select>
+                </td>
+                <td rowspan="4" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_1_row5_type2">
+                <td colspan="4">松动或变形</td>
+                <td colspan="6">
+                    <select name="桥面系；人行道；松动或变形">
+                        <option value="无">无</option>
+                        <option value="<5%"><5%</option>
+                        <option value="5%~10%">5%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row5_type3">
+                <td colspan="4">残缺</td>
+                <td colspan="6">
+                    <select name="桥面系；人行道；残缺">
+                        <option value="无">无</option>
+                        <option value="<5%"><5%</option>
+                        <option value="5%~10%">5%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+
+        <div name="栏杆或护栏">
+            <tr id="table_1_row6">
+                <td rowspan="4" colspan="2">栏杆或护栏</td>
+            </tr>
+            <tr id="table_1_row6_type1">
+                <td colspan="4">露筋锈蚀</td>
+                <td colspan="6">
+                    <select name="桥面系；栏杆或护栏；露筋锈蚀">
+                        <option value="无">无</option>
+                        <option value="<5%"><5%</option>
+                        <option value="5%~20%">5%~20%</option>
+                        <option value=">20%">>20%</option>
+                    </select>
+                </td>
+                <td rowspan="4" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_1_row6_type2">
+                <td colspan="4">松动错位</td>
+                <td colspan="6">
+                    <select name="桥面系；栏杆或护栏；松动错位">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="中等">中等</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_1_row6_type3">
+                <td colspan="4">丢失残缺</td>
+                <td colspan="6">
+                    <select name="桥面系；栏杆或护栏；丢失残缺">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="中等">中等</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+
+        </tbody>
+    </table>
+
+
+    <table id="table_2" name="上部结构">
+        <thead>
+        <tr>
+            <td colspan="24">上部结构</td>
+        </tr>
+        <tr>
+            <td colspan="2">结构名称</td>
+            <td colspan="4">损坏类型</td>
+            <td colspan="6">损坏程度</td>
+            <td colspan="12">备注</td>
+        </tr>
+        </thead>
+
+        <tbody>
+
+
+        <div name="主拱圈">
+            <tr id="table_2_row3">
+                <td rowspan="9" colspan="2">主拱圈</td>
+            </tr>
+            <tr id="table_2_row3_type1">
+                <td colspan="4">桥面贯通横缝</td>
+                <td colspan="6">
+                    <select name="上部结构；主拱圈；桥面贯通横缝">
+                        <option value="无">无</option>
+                        <option value="非贯通">非贯通</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+                <td rowspan="9" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_2_row3_type2">
+                <td colspan="4">主拱圈变形</td>
+                <td colspan="6">
+                    <select name="上部结构；主拱圈；主拱圈变形">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row3_type3">
+                <td colspan="4">砌体缺失</td>
+                <td colspan="6">
+                    <select name="上部结构；主拱圈；砌体缺失">
+                        <option value="无">无</option>
+                        <option value="少量">少量</option>
+                        <option value="大量">大量</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row3_type4">
+                <td colspan="4">砂浆松动缺失</td>
+                <td colspan="6">
+                    <select name="上部结构；主拱圈；砂浆松动缺失">
+                        <option value="无">无</option>
+                        <option value="少量">少量</option>
+                        <option value="大量">大量</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row3_type5">
+                <td colspan="4">表面风化损坏</td>
+                <td colspan="6">
+                    <select name="上部结构；主拱圈；表面风化损坏">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row3_type6">
+                <td colspan="4">表面网状裂缝</td>
+                <td colspan="6">
+                    <select name="上部结构；主拱圈；表面网站裂缝">                        <option value="无">无</option>
+                        <option value="无">无</option>
+                        <option value="<3%"><3%</option>
+                        <option value="3%~10%">3%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row3_type7">
+                <td colspan="4">构件断裂</td>
+                <td colspan="6">
+                    <select name="上部结构；主拱圈；构件断裂">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row3_type8">
+                <td colspan="4">结构裂缝</td>
+                <td colspan="6">
+                    <select name="上部结构；主拱圈；结构裂缝">
+                        <option value="无">无</option>
+                        <option value="明显">明显</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+
+        <div name="钢结构物">
+            <tr id="table_2_row4">
+                <td rowspan="11" colspan="2">钢结构物</td>
+            </tr>
+            <tr id="table_2_row4_type1">
+                <td colspan="4">变色起皮</td>
+                <td colspan="6">
+                    <select name="上部结构；钢结构物；变色起皮">
+                        <option value="无">无</option>
+                        <option value="<30%"><30%</option>
+                        <option value=">30%">>30%</option>
+                    </select>
+                </td>
+                <td rowspan="11" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_2_row4_type2">
+                <td colspan="4">油漆剥落</td>
+                <td colspan="6">
+                    <select name="上部结构；钢结构物；油漆剥落">
+                        <option value="无">无</option>
+                        <option value="<10%"><10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row4_type3">
+                <td colspan="4">一般锈蚀</td>
+                <td colspan="6">
+                    <select name="上部结构；钢结构物；一般锈蚀">
+                        <option value="无">无</option>
+                        <option value="<5%"><5%</option>
+                        <option value="5%~10%">5%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row4_type4">
+                <td colspan="4">严重锈蚀</td>
+                <td colspan="6">
+                    <select name="上部结构；钢结构物；严重锈蚀">
+                        <option value="无">无</option>
+                        <option value="<5%"><5%</option>
+                        <option value="5%~10%">5%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row4_type5">
+                <td colspan="4">锈蚀成洞</td>
+                <td colspan="6">
+                    <select name="上部结构；钢结构物；锈蚀成洞">
+                        <option value="无">无</option>
+                        <option value="局部">局部</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row4_type6">
+                <td colspan="4">焊缝裂纹</td>
+                <td colspan="6">
+                    <select name="上部结构；钢结构物；焊缝裂纹">
+                        <option value="无">无</option>
+                        <option value="少量">少量</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row4_type7">
+                <td colspan="4">焊缝开裂</td>
+                <td colspan="6">
+                    <select name="上部结构；钢结构物；焊缝开裂">
+                        <option value="无">无</option>
+                        <option value="少量">少量</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row4_type8">
+                <td colspan="4">铆钉损失</td>
+                <td colspan="6">
+                    <select name="上部结构；钢结构物；铆钉损失">
+                        <option value="无">无</option>
+                        <option value="<20%"><20%</option>
+                        <option value=">20%">>20%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row4_type9">
+                <td colspan="4">螺栓松动</td>
+                <td colspan="6">
+                    <select name="上部结构；钢结构物；螺栓松动">
+                        <option value="无">无</option>
+                        <option value="少量">少量</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row4_type10">
+                <td colspan="4">错位变形</td>
+                <td colspan="6">
+                    <select name="上部结构；钢结构物；错位变形">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="明显">明显</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="pc或pc梁式构件">
+            <tr id="table_2_row5">
+                <td rowspan="9" colspan="2">pc或pc梁式构件</td>
+            </tr>
+            <tr id="table_2_row5_type1">
+                <td colspan="4">梁体下挠</td>
+                <td colspan="6">
+                    <select name="上部结构；pc或pc梁式构件；梁体下挠">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="明显">明显</option>
+                    </select>
+                </td>
+                <td rowspan="9" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_2_row5_type2">
+                <td colspan="4">结构裂缝</td>
+                <td colspan="6">
+                    <select name="上部结构；pc或pc梁式构件；结构裂缝">
+                        <option value="无">无</option>
+                        <option value="明显">明显</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row5_type3">
+                <td colspan="4">裂缝处渗水</td>
+                <td colspan="6">
+                    <select name="上部结构；pc或pc梁式构件；裂缝处渗水">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row5_type4">
+                <td colspan="4">桥面贯通横缝</td>
+                <td colspan="6">
+                    <select name="上部结构；pc或pc梁式构件；桥面贯通横缝">
+                        <option value="无">无</option>
+                        <option value="非贯通">非贯通</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row5_type5">
+                <td colspan="4">梁体位移</td>
+                <td colspan="6">
+                    <select name="上部结构；pc或pc梁式构件；梁体位移">
+                        <option value="无">无</option>
+                        <option value="明显">明显</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row5_type6">
+                <td colspan="4">表面裂缝</td>
+                <td colspan="6">
+                    <select name="上部结构；pc或pc梁式构件；表面裂缝">
+                        <option value="无">无</option>
+                        <option value="<3%"><3%</option>
+                        <option value="3%~10%">3%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row5_type7">
+                <td colspan="4">混凝土剥落</td>
+                <td colspan="6">
+                    <select name="上部结构；pc或pc梁式构件；混凝土剥落">
+                        <option value="无">无</option>
+                        <option value="<1%"><1%</option>
+                        <option value="1%~2%">1%~2%</option>
+                        <option value=">2%">>2%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row5_type8">
+                <td colspan="4">露筋锈蚀</td>
+                <td colspan="6">
+                    <select name="上部结构；pc或pc梁式构件；露筋锈蚀">
+                        <option value="无">无</option>
+                        <option value="<1%"><1%</option>
+                        <option value="1%~2%">1%~2%</option>
+                        <option value=">2%">>2%</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+
+        <div name="横向联系">
+            <tr id="table_2_row6">
+                <td rowspan="7" colspan="2">横向联系</td>
+            </tr>
+            <tr id="table_2_row6_type1">
+                <td colspan="4">桥面贯通纵缝</td>
+                <td colspan="6">
+                    <select name="上部结构；横向联系；桥面贯通纵缝">
+                        <option value="无">无</option>
+                        <option value="非贯通">非贯通</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+                <td rowspan="7" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_2_row6_type2">
+                <td colspan="4">连接件脱焊松动</td>
+                <td colspan="6">
+                    <select name="上部结构；横向联系；连接件脱焊松动">
+                        <option value="无">无</option>
+                        <option value="<5%"><5%</option>
+                        <option value="5%~10%"><5%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row6_type3">
+                <td colspan="4">连接件断裂</td>
+                <td colspan="6">
+                    <select name="上部结构；横向联系；连接件断裂">
+                        <option value="无">无</option>
+                        <option value="<5%"><5%</option>
+                        <option value="5%~10%">5%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row6_type4">
+                <td colspan="4">横隔板网裂</td>
+                <td colspan="6">
+                    <select name="上部结构；横向联系；横隔板网裂">
+                        <option value="无">无</option>
+                        <option value="<10%"><10%</option>
+                        <option value="10%~20%">10%~20%</option>
+                        <option value=">20%">>20%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row6_type5">
+                <td colspan="4">横隔板剥落露筋</td>
+                <td colspan="6">
+                    <select name="上部结构；横向联系；横隔板剥落露筋">
+                        <option value="无">无</option>
+                        <option value="<5%"><5%</option>
+                        <option value="5%~10%">5%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row6_type6">
+                <td colspan="4">梁体异常振动</td>
+                <td colspan="6">
+                    <select name="上部结构；横向联系；梁体异常振动">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="拱桥横向联系">
+            <tr id="table_2_row7">
+                <td rowspan="6" colspan="2">拱桥横向联系</td>
+            </tr>
+            <tr id="table_2_row7_type1">
+                <td colspan="4">微弯板网裂</td>
+                <td colspan="6">
+                    <select name="上部结构；拱桥横向联系；微弯板网裂">
+                        <option value="无">无</option>
+                        <option value="<10%"><10%</option>
+                        <option value="10%~20%">10%~20%</option>
+                        <option value=">20%">>20%</option>
+                    </select>
+                </td>
+                <td rowspan="6" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_2_row7_type2">
+                <td colspan="4">连接件（杆）开裂</td>
+                <td colspan="6">
+                    <select name="上部结构；拱桥横向联系；连接件（杆）开裂">
+                        <option value="无">无</option>
+                        <option value="<10%"><10%</option>
+                        <option value="10%~20%">10%~20%</option>
+                        <option value=">20%">>20%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row7_type3">
+                <td colspan="4">连接件（杆）剥落露筋</td>
+                <td colspan="6">
+                    <select name="上部结构；拱桥横向联系；连接件（杆）剥落露筋">
+                        <option value="无">无</option>
+                        <option value="<5%"><5%</option>
+                        <option value="5%~10%">5%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row7_type4">
+                <td colspan="4">桥面贯通纵缝</td>
+                <td colspan="6">
+                    <select name="上部结构；拱桥横向联系；桥面贯通纵缝">
+                        <option value="无">无</option>
+                        <option value="非贯通">非贯通</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row7_type5">
+                <td colspan="4">微弯板剥落露筋</td>
+                <td colspan="6">
+                    <select name="上部结构；拱桥横向联系；微弯板剥落露筋">
+                        <option value="无">无</option>
+                        <option value="<10%"><10%</option>
+                        <option value="10%~20%">10%~20%</option>
+                        <option value=">20%">>20%</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+
+        <div name="防落梁装置">
+            <tr id="table_2_row8">
+                <td rowspan="5" colspan="2">防落梁装置</td>
+            </tr>
+            <tr id="table_2_row8_type1">
+                <td colspan="4">有无落架趋势</td>
+                <td colspan="6">
+                    <select name="上部结构；防落梁装置；有无落架趋势">
+                        <option value="无">无</option>
+                        <option value="有">有</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+                <td rowspan="5" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_2_row8_type2">
+                <td colspan="4">牛腿表面损伤</td>
+                <td colspan="6">
+                    <select name="上部结构；防落梁装置；牛腿表面损伤">
+                        <option value="无">无</option>
+                        <option value="剥离">剥离</option>
+                        <option value="锈蚀">锈蚀</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row8_type3">
+                <td colspan="4">伸缩缝处渗水</td>
+                <td colspan="6">
+                    <select name="上部结构；防落梁装置；伸缩缝处渗水">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row8_type4">
+                <td colspan="4">钢锚板锈蚀</td>
+                <td colspan="6">
+                    <select name="上部结构；防落梁装置；钢锚板锈蚀">
+                        <option value="完好">完好</option>
+                        <option value="锈蚀">锈蚀</option>
+                        <option value="锈蚀且消弱截面">锈蚀且消弱截面</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+
+
+        <div name="拱上构造">
+            <tr id="table_2_row9">
+                <td rowspan="14" colspan="1">拱上构造</td>
+            </tr>
+            <tr>
+                <td rowspan="6" colspan="1">实腹式</td>
+            </tr>
+            <tr id="table_2_row9_type1">
+                <td colspan="4">砌体脱落</td>
+                <td colspan="6">
+                    <select name="上部结构；拱上构造；实腹式；砌体脱落">
+                        <option value="无">无</option>
+                        <option value="少量">少量</option>
+                        <option value="大量">大量</option>
+                    </select>
+                </td>
+                <td rowspan="13" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_2_row9_type2">
+                <td colspan="4">表面风化剥落</td>
+                <td colspan="6">
+                    <select name="上部结构；拱上构造；实腹式；表面风化剥落">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row9_type3">
+                <td colspan="4">侧墙变形</td>
+                <td colspan="6">
+                    <select name="上部结构；拱上构造；实腹式；侧墙变形">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row9_type4">
+                <td colspan="4">砌体缺损</td>
+                <td colspan="6">
+                    <select name="上部结构；拱上构造；实腹式；砌体缺损">
+                        <option value="无">无</option>
+                        <option value="少量">少量</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row9_type5">
+                <td colspan="4">砂浆松动缺失</td>
+                <td colspan="6">
+                    <select name="上部结构；拱上构造；实腹式；砂浆松动缺失">
+                        <option value="无">无</option>
+                        <option value="少量">少量</option>
+                        <option value="大量">大量</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td rowspan="7" colspan="1">空腹式</td>
+            </tr>
+            <tr id="table_2_row9_type6">
+                <td colspan="4">腹拱圈变形</td>
+                <td colspan="6">
+                    <select name="上部结构；拱上构造；空腹式；腹拱圈变形">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row9_type7">
+                <td colspan="4">表面开裂</td>
+                <td colspan="6">
+                    <select name="上部结构；拱上构造；空腹式；表面开裂">
+                        <option value="无">无</option>
+                        <option value="少量">少量</option>
+                        <option value="大量">大量</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row9_type8">
+                <td colspan="4">混凝土剥落</td>
+                <td colspan="6">
+                    <select name="上部结构；拱上构造；空腹式；混凝土剥落">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row9_type9">
+                <td colspan="4">露筋锈蚀</td>
+                <td colspan="6">
+                    <select name="上部结构；拱上构造；空腹式；露筋锈蚀">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row9_type10">
+                <td colspan="4">结构裂缝</td>
+                <td colspan="6">
+                    <select name="上部结构；拱上构造；空腹式；结构裂缝">
+                        <option value="无">无</option>
+                        <option value="明显">明显</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row9_type11">
+                <td colspan="4">破裂处渗水</td>
+                <td colspan="6">
+                    <select name="上部结构；拱上构造；空腹式；破裂处渗水">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="外部装饰板">
+            <tr id="table_2_row10">
+                <td rowspan="4" colspan="2">外部装饰板</td>
+            </tr>
+            <tr id="table_2_row10_type1">
+                <td colspan="4">松动错位</td>
+                <td colspan="6">
+                    <select name="上部结构；外部装饰板；松动错位">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="中等">中等</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+                <td rowspan="4" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_2_row10_type2">
+                <td colspan="4">丢失残缺</td>
+                <td colspan="6">
+                    <select name="上部结构；外部装饰板；丢失残缺">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="中等">中等</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_2_row10_type3">
+                <td colspan="4">局部变形</td>
+                <td colspan="6">
+                    <select name="上部结构；外部装饰板；局部变形">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="明显">明显</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+
+<!--        <div name="多余">-->
+<!--            <tr id="table_2_row1">-->
+<!--                <td colspan="6">主梁</td>-->
+<!--            </tr>-->
+<!--            <tr id="table_2_row2">-->
+<!--                <td colspan="6">主桁架</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td id="table_2_col4" colspan="6">横梁</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td id="table_2_col6" colspan="6">主节点</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td id="table_2_col7" colspan="6">挂梁</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td id="table_2_col8" colspan="6">连接件</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td id="table_2_col9" colspan="6">悬臂梁</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td id="table_2_col10" colspan="6">挂梁支座</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td id="table_2_col12" colspan="6">横向连接</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td id="table_2_col13" colspan="6">桁片</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td id="table_2_col14" colspan="6">纵梁</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td id="table_2_col15" colspan="6">主拱圈（桁）</td>-->
+<!--            </tr>-->
+<!--        </div>-->
+
+        </tbody>
+    </table>
+
+
+    <table id="table_3" name="桥墩">
+        <thead>
+        <tr>
+            <td colspan="24">桥墩</td>
+        </tr>
+        <tr>
+            <td colspan="2">结构名称</td>
+            <td colspan="4">损坏类型</td>
+            <td colspan="6">损坏程度</td>
+            <td colspan="12">备注</td>
+        </tr>
+        </thead>
+
+        <tbody>
+
+
+        <div name="支座">
+            <tr id="table_3_row1">
+                <td rowspan="7" colspan="2">支座</td>
+            </tr>
+            <tr id="table_3_row1_type1">
+                <td colspan="4">支座固定螺栓毁坏</td>
+                <td colspan="6">
+                    <select name="桥墩；支座；支座固定螺栓毁坏">
+                        <option value="完好">完好</option>
+                        <option value="松动">松动</option>
+                        <option value="锈蚀">锈蚀</option>
+                    </select>
+                </td>
+                <td rowspan="32" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_3_row1_type2">
+                <td colspan="4">橡胶支座变形</td>
+                <td colspan="6">
+                    <select name="桥墩；支座；橡胶支座变形">
+                        <option value="完好">完好</option>
+                        <option value="变形">变形</option>
+                        <option value="开裂">开裂</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row1_type3">
+                <td colspan="4">钢支座毁坏</td>
+                <td colspan="6">
+                    <select name="桥墩；支座；钢支座毁坏">
+                        <option value="完好">完好</option>
+                        <option value="松动">松动</option>
+                        <option value="锈蚀">锈蚀</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row1_type4">
+                <td colspan="4">支座底板混凝土破损</td>
+                <td colspan="6">
+                    <select name="桥墩；支座；支座底板混凝土破损">
+                        <option value="完好">完好</option>
+                        <option value="锈蚀">锈蚀</option>
+                        <option value="碎裂">碎裂</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row1_type5">
+                <td colspan="4">支承稳定性异常</td>
+                <td colspan="6">
+                    <select name="桥墩；支座；支承稳定性异常">
+                        <option value="稳定">稳定</option>
+                        <option value="不稳">不稳</option>
+                        <option value="落梁危险">落梁危险</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row1_type6">
+                <td colspan="4">钢垫板锈蚀</td>
+                <td colspan="6">
+                    <select name="桥墩；支座；钢垫板锈蚀">
+                        <option value="完好">完好</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="盖梁">
+            <tr id="table_3_row2">
+                <td rowspan="7" colspan="2">盖梁</td>
+            </tr>
+            <tr id="table_3_row2_type1">
+                <td colspan="4">表面裂缝</td>
+                <td colspan="6">
+                    <select name="桥墩；盖梁；表面裂缝">
+                        <option value="无">无</option>
+                        <option value="<3%"><3%</option>
+                        <option value="3%~10%">3%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row2_type2">
+                <td colspan="4">混凝土剥落</td>
+                <td colspan="6">
+                    <select name="桥墩；盖梁；混凝土剥落">
+                        <option value="无">无</option>
+                        <option value="<1%"><1%</option>
+                        <option value="1%~2%">1%~2%</option>
+                        <option value=">2%">>2%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row2_type3">
+                <td colspan="4">露筋锈蚀</td>
+                <td colspan="6">
+                    <select name="桥墩；盖梁；露筋锈蚀">
+                        <option value="无">无</option>
+                        <option value="<1%"><1%</option>
+                        <option value="1%~2%">1%~2%</option>
+                        <option value=">2%">>2%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row2_type4">
+                <td colspan="4">结构裂缝</td>
+                <td colspan="6">
+                    <select name="桥墩；盖梁；结构裂缝">
+                        <option value="无">无</option>
+                        <option value="明显">明显</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row2_type5">
+                <td colspan="4">裂缝处渗水</td>
+                <td colspan="6">
+                    <select name="桥墩；盖梁；裂缝处渗水">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row2_type6">
+                <td colspan="4">墩台成块剥落</td>
+                <td colspan="6">
+                    <select name="桥墩；盖梁；墩台成块剥落">
+                        <option value="无">无</option>
+                        <option value="<1%"><1%</option>
+                        <option value="1%~2%">1%~2%</option>
+                        <option value=">2%">>2%</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="墩身">
+            <tr id="table_3_row3">
+                <td rowspan="8" colspan="2">墩身</td>
+            </tr>
+            <tr id="table_3_row3_type1">
+                <td colspan="4">墩身水平裂缝</td>
+                <td colspan="6">
+                    <select name="桥墩；墩身；墩身水平裂缝">
+                        <option value="无">无</option>
+                        <option value="非贯通">非贯通</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row3_type2">
+                <td colspan="4">墩身纵向裂缝</td>
+                <td colspan="6">
+                    <select name="桥墩；墩身；墩身纵向裂缝">
+                        <option value="无">无</option>
+                        <option value="非贯通">非贯通</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row3_type3">
+                <td colspan="4">框架式节点裂缝</td>
+                <td colspan="6">
+                    <select name="桥墩；墩身；框架式节点裂缝">
+                        <option value="完好">完好</option>
+                        <option value="微裂">微裂</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row3_type4">
+                <td colspan="4">露筋锈蚀</td>
+                <td colspan="6">
+                    <select name="桥墩；墩身；露筋锈蚀">
+                        <option value="无">无</option>
+                        <option value="<1%"><1%</option>
+                        <option value="1%~2%">1%~2%</option>
+                        <option value=">2%">>2%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row3_type5">
+                <td colspan="4">混凝土剥落</td>
+                <td colspan="6">
+                    <select name="桥墩；墩身；混凝土剥落">
+                        <option value="无">无</option>
+                        <option value="<1%"><1%</option>
+                        <option value="1%~2%">1%~2%</option>
+                        <option value=">2%">>2%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row3_type6">
+                <td colspan="4">桥墩倾斜</td>
+                <td colspan="6">
+                    <select name="桥墩；墩身；桥墩倾斜">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row3_type7">
+                <td colspan="4">桥面贯通横缝</td>
+                <td colspan="6">
+                    <select name="桥墩；墩身；桥面贯通横缝">
+                        <option value="无">无</option>
+                        <option value="非贯通">非贯通</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="基础">
+            <tr id="table_3_row4">
+                <td rowspan="5" colspan="2">基础</td>
+            </tr>
+            <tr id="table_3_row4_type1">
+                <td colspan="4">基础冲刷</td>
+                <td colspan="6">
+                    <select name="桥墩；基础；基础冲刷">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row4_type2">
+                <td colspan="4">基础掏空</td>
+                <td colspan="6">
+                    <select name="桥墩；基础；基础掏空">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row4_type3">
+                <td colspan="4">混凝土桩损坏</td>
+                <td colspan="6">
+                    <select name="桥墩；基础；混凝土桩损坏">
+                        <option value="完好">完好</option>
+                        <option value="直径减小">直径减小</option>
+                        <option value="锈蚀">锈蚀</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row4_type4">
+                <td colspan="4">基础位移</td>
+                <td colspan="6">
+                    <select name="桥墩；基础；基础位移">
+                        <option value="无">无</option>
+                        <option value="倾斜">倾斜</option>
+                        <option value="坍塌变形">坍塌变形</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="拱脚">
+            <tr id="table_3_row5">
+                <td rowspan="4" colspan="2">拱脚</td>
+            </tr>
+            <tr id="table_3_row5_type1">
+                <td colspan="4">拱脚位移</td>
+                <td colspan="6">
+                    <select name="桥墩；拱脚；拱脚位移">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row5_type2">
+                <td colspan="4">拱脚开裂</td>
+                <td colspan="6">
+                    <select name="桥墩；拱脚；拱脚位移">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row5_type3">
+                <td colspan="4">拱脚残缺</td>
+                <td colspan="6">
+                    <select name="桥墩；拱脚；拱脚位移">
+                        <option value="无">无</option>
+                        <option value="个别处">个别处</option>
+                        <option value="多处">多处</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        </tbody>
+    </table>
+
+    <table id="table_4" name="桥台">
+        <thead>
+        <tr>
+            <td colspan="24">桥台</td>
+        </tr>
+        <tr>
+            <td colspan="2">结构名称</td>
+            <td colspan="4">损坏类型</td>
+            <td colspan="6">损坏程度</td>
+            <td colspan="12">备注</td>
+        </tr>
+        </thead>
+
+        <tbody>
+
+
+        <div name="台帽">
+            <tr id="table_3_row7">
+                <td rowspan="7" colspan="2">台帽</td>
+            </tr>
+            <tr id="table_3_row7_type1">
+                <td colspan="4">表面裂缝</td>
+                <td colspan="6">
+                    <select name="桥台；台帽；表面裂缝">
+                        <option value="无">无</option>
+                        <option value="<3%"><3%</option>
+                        <option value="3%~10%">3%~10%</option>
+                        <option value=">10%">>10%</option>
+                    </select>
+                </td>
+                <td rowspan="37" colspan="12"><input type="text"></td>
+            </tr>
+            <tr id="table_3_row7_type2">
+                <td colspan="4">混凝土剥落</td>
+                <td colspan="6">
+                    <select name="桥台；台帽；混凝土剥落">
+                        <option value="无">无</option>
+                        <option value="<1%"><1%</option>
+                        <option value="1%~2%">1%~2%</option>
+                        <option value=">2%">>2%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row7_type3">
+                <td colspan="4">露筋锈蚀</td>
+                <td colspan="6">
+                    <select name="桥台；台帽；露筋锈蚀">
+                        <option value="无">无</option>
+                        <option value="<1%"><1%</option>
+                        <option value="1%~2%">1%~2%</option>
+                        <option value=">2%">>2%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row7_type4">
+                <td colspan="4">结构裂缝</td>
+                <td colspan="6">
+                    <select name="桥台；台帽；结构裂缝">
+                        <option value="无">无</option>
+                        <option value="明显">明显</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row7_type5">
+                <td colspan="4">裂缝处渗水</td>
+                <td colspan="6">
+                    <select name="桥台；台帽；裂缝处渗水">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row7_type6">
+                <td colspan="4">墩台成块剥落</td>
+                <td colspan="6">
+                    <select name="桥台；台帽；墩台成块剥落">
+                        <option value="无">无</option>
+                        <option value="<1%"><1%</option>
+                        <option value="1%~2%">1%~2%</option>
+                        <option value=">2%">>2%</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="台身">
+            <tr id="table_3_row8">
+                <td rowspan="8" colspan="2">台身</td>
+            </tr>
+            <tr id="table_3_row8_type1">
+                <td colspan="4">墩身水平裂缝</td>
+                <td colspan="6">
+                    <select name="桥台；台身；墩身水平裂缝">
+                        <option value="无">无</option>
+                        <option value="非贯通">非贯通</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row8_type2">
+                <td colspan="4">墩身纵向裂缝</td>
+                <td colspan="6">
+                    <select name="桥台；台身；墩身纵向裂缝">
+                        <option value="无">无</option>
+                        <option value="非贯通">非贯通</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row8_type3">
+                <td colspan="4">框架式节点裂缝</td>
+                <td colspan="6">
+                    <select name="桥台；台身；框架式节点裂缝">
+                        <option value="完好">完好</option>
+                        <option value="微裂">微裂</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row8_type4">
+                <td colspan="4">露筋锈蚀</td>
+                <td colspan="6">
+                    <select name="桥台；台身；露筋锈蚀">
+                        <option value="无">无</option>
+                        <option value="<1%"><1%</option>
+                        <option value="1%~2%">1%~2%</option>
+                        <option value=">2%">>2%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row8_type5">
+                <td colspan="4">混凝土剥落</td>
+                <td colspan="6">
+                    <select name="桥台；台身；混凝土剥落">
+                        <option value="无">无</option>
+                        <option value="<1%"><1%</option>
+                        <option value="1%~2%">1%~2%</option>
+                        <option value=">2%">>2%</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row8_type6">
+                <td colspan="4">桥墩倾斜</td>
+                <td colspan="6">
+                    <select name="桥台；台身；桥墩倾斜">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row8_type7">
+                <td colspan="4">桥面贯通横缝</td>
+                <td colspan="6">
+                    <select name="桥台；台身；桥面贯通横缝">
+                        <option value="无">无</option>
+                        <option value="非贯通">非贯通</option>
+                        <option value="贯通">贯通</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="基础">
+            <tr id="table_3_row9">
+                <td rowspan="5" colspan="2">基础</td>
+            </tr>
+            <tr id="table_3_row9_type1">
+                <td colspan="4">基础冲刷</td>
+                <td colspan="6">
+                    <select name="桥台；基础；基础冲刷">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row9_type2">
+                <td colspan="4">基础掏空</td>
+                <td colspan="6">
+                    <select name="桥台；基础；基础掏空">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row9_type3">
+                <td colspan="4">混凝土桩损坏</td>
+                <td colspan="6">
+                    <select name="桥台；基础；混凝土桩损坏">
+                        <option value="完好">完好</option>
+                        <option value="直径减小">直径减小</option>
+                        <option value="锈蚀">锈蚀</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row9_type4">
+                <td colspan="4">基础位移</td>
+                <td colspan="6">
+                    <select name="桥台；基础；基础位移">
+                        <option value="无">无</option>
+                        <option value="倾斜">倾斜</option>
+                        <option value="坍塌变形">坍塌变形</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="耳墙（翼墙）">
+            <tr id="table_3_row10">
+                <td rowspan="5" colspan="2">耳墙（翼墙）</td>
+            </tr>
+            <tr id="table_3_row10_type1">
+                <td colspan="4">剥离脱落</td>
+                <td colspan="6">
+                    <select name="桥台；耳墙（翼墙）；剥离脱落">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row10_type2">
+                <td colspan="4">翼墙前结合处开裂</td>
+                <td colspan="6">
+                    <select name="桥台；耳墙（翼墙）；翼墙前结合处开裂">
+                        <option value="完好">完好</option>
+                        <option value="开裂">开裂</option>
+                        <option value="脱落">脱落</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row10_type3">
+                <td colspan="4">挡土功能缺失</td>
+                <td colspan="6">
+                    <select name="桥台；耳墙（翼墙）；挡土功能缺失">
+                        <option value="完好">完好</option>
+                        <option value="失去部分">失去部分</option>
+                        <option value="完全散失">完全散失</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row10_type4">
+                <td colspan="4">翼墙大贯通缝</td>
+                <td colspan="6">
+                    <select name="桥台；耳墙（翼墙）；翼墙大贯通缝">
+                        <option value="无">无</option>
+                        <option value="少量">少量</option>
+                        <option value="大量">大量</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="支座">
+            <tr id="table_3_row11">
+                <td rowspan="7" colspan="2">支座</td>
+            </tr>
+            <tr id="table_3_row11_type1">
+                <td colspan="4">支座固定螺栓毁坏</td>
+                <td colspan="6">
+                    <select name="桥台；支座；支座固定螺栓毁坏">
+                        <option value="完好">完好</option>
+                        <option value="松动">松动</option>
+                        <option value="锈蚀">锈蚀</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row11_type2">
+                <td colspan="4">橡胶支座变形</td>
+                <td colspan="6">
+                    <select name="桥台；支座；橡胶支座变形">
+                        <option value="完好">完好</option>
+                        <option value="变形">变形</option>
+                        <option value="开裂">开裂</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row11_type3">
+                <td colspan="4">钢支座毁坏</td>
+                <td colspan="6">
+                    <select name="桥台；支座；钢支座毁坏">
+                        <option value="完好">完好</option>
+                        <option value="松动">松动</option>
+                        <option value="锈蚀">锈蚀</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row11_type4">
+                <td colspan="4">支座底板混凝土破损</td>
+                <td colspan="6">
+                    <select name="桥台；支座；支座底板混凝土破损">
+                        <option value="完好">完好</option>
+                        <option value="锈蚀">锈蚀</option>
+                        <option value="碎裂">碎裂</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row11_type5">
+                <td colspan="4">支承稳定性异常</td>
+                <td colspan="6">
+                    <select name="桥台；支座；支承稳定性异常">
+                        <option value="稳定">稳定</option>
+                        <option value="不稳">不稳</option>
+                        <option value="落梁危险">落梁危险</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row11_type6">
+                <td colspan="4">钢垫板锈蚀</td>
+                <td colspan="6">
+                    <select name="桥台；支座；钢垫板锈蚀">
+                        <option value="完好">完好</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+
+        <div name="拱脚">
+            <tr id="table_3_row12">
+                <td rowspan="4" colspan="2">拱脚</td>
+            </tr>
+            <tr id="table_3_row12_type1">
+                <td colspan="4">拱脚位移</td>
+                <td colspan="6">
+                    <select name="桥台；拱脚；拱脚位移">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row12_type2">
+                <td colspan="4">拱脚开裂</td>
+                <td colspan="6">
+                    <select name="桥台；拱脚；拱脚开裂">
+                        <option value="无">无</option>
+                        <option value="轻微">轻微</option>
+                        <option value="严重">严重</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="table_3_row12_type3">
+                <td colspan="4">>拱脚残缺</td>
+                <td colspan="6">
+                    <select name="桥台；拱脚；拱脚残缺">
+                        <option value="无">无</option>
+                        <option value="个别处">个别处</option>
+                        <option value="多处">多处</option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+<div>
+    <button id="btn_2" type="button">提交</button>
+</div>
+
+</form>
+</div>
+</body>
+<script>
+    $("#btn_2").on("click",function(){
+        var info = JSON.stringify($('#addInfoForm').serializeArray())
+        //alert("序列化为json格式为：" + info);
+
+        var url = "/rugularCheckInfo"
+
+        $.ajax({
+            type: "post",
+            url: url,
+            dataType: "json",
+            data: {
+                info: info
+            },
+            async: false,
+            success: function (data) {
+             alert("success")
+                if(data[0]>90)
+                {
+                    alert("桥梁等级：A"+" "+"桥梁技术状况评分:"+data[0])
+                }
+                else if(data[0]>80)
+                {
+                    alert("桥梁等级：B"+" "+"桥梁技术状况评分:"+data[0])
+                }
+                else if(data[0]>66)
+                {
+                    alert("桥梁等级：C"+" "+"桥梁技术状况评分:"+data[0])
+                }
+                else if(data[0]>50)
+                {
+                    alert("桥梁等级：D"+" "+"桥梁技术状况评分:"+data[0])
+                }
+                else alert("桥梁等级：E"+" "+"桥梁技术状况评分:"+data[0])
+            },
+            error: function () {
+                alert("error")
+            }
+        })
+    })
+</script>
+<script>
+    $("#jump").click(function () {
+        window.location.href="Map.html";
+    })
+</script>
+</html>

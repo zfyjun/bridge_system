@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <style>-->
+<!--        html{-->
+<!--            background: #ffffff;-->
+<!--        }-->
+    <style>
+        h1{/*桥梁资料卡美化*/
+            border-color: black;
+            font-size: 20px;
+            font-weight: normal;
+            background: #9f3cff;
+            color: white;
+            width: 300px;
+            height: 40px;
+            text-align: center;
+            box-shadow: 2px 2px 2px #ccc;
+            margin-bottom: 20px;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /*table{*/
+        /*    margin: auto;*/
+        /*}*/
+        input{
+            border:0;
+            outline:0;
+            background-color: rgba(0,0,0,0);
+        }
+        h3{
+            margin-left: 200px;
+        }
+        h2{
+            box-shadow: 2px 2px 2px #aaaaaa;
+            border-style: double;
+            border-color: rgba(5, 0, 0, 0.08);
+            width: 1100px;
+            height: 50px;
+            background-color: #fff3e5;
+            text-align: center;
+            font-size: large;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        input1{
+            border: black;
+        }
+        #jump {
+
+            border-color: cornsilk;
+            background-color: rgba(100, 149, 237, .7);
+            color: aliceblue;
+            border-style: hidden;
+            width: 80px;
+            height: 31px;
+            font-size: 16px;
+        }
+        .button {
+            border-style: double;
+            border-color: rgba(5, 0, 0, 0.08);
+            background-color: #fff3e5;
+            color: #000000;
+            width: 80px;
+            height: 31px;
+            font-size: 16px;
+        }
+        </style>
+
+</head>
+<body>
+<button id="jump" >返回</button>
+<h1>桥梁资料卡</h1>
+<h3>
+    <button id="b_search" class="button">查询</button>
+    <button id="b_insert" class="button">插入</button>
+    <button id="b_delete" class="button">删除</button>
+</h3>
+<h2>
+    桥梁编号:<input id="id_input" >桥梁类型编号:<input id="type_id_input">桥梁名称:<input id="b_name">所在地址:<input id="b_area">
+
+</h2>
+
+
+<table border="1" cellspacing="0" align="center">
+<!--   //一般资料-->
+    <tr>
+        <th width="100" height="50" align="center" bgcolor="#fff3e5" colspan="8">一般资料</th>
+    </tr>
+
+    <tr>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">桥梁总长</td>
+        <td width="100" height="50" align="center"><input id="b_length"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">桥梁总宽</td>
+        <td width="100" height="50" align="center"><input id="b_width"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">经度</td>
+        <td width="100" height="50" align="center"><input id="b_lng"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">纬度</td>
+        <td width="100" height="50" align="center"><input id="b_lat"></td>
+
+    </tr>
+
+    <tr>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">管理单位</td>
+        <td width="100" height="50" align="center"><input id="gi_supervision_unit"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5"></td>
+        <td width="100" height="50" align="center"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5"></td>
+        <td width="100" height="50" align="center"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5"></td>
+        <td width="100" height="50" align="center"></td>
+    </tr>
+<!--    /*上部结构-->
+    <tr>
+        <th width="100" height="50" align="center" bgcolor="#fff3e5" colspan="8">上部结构</th>
+    </tr>
+    <tr>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">主梁形式</td>
+        <td width="100" height="50" align="center"><input id="ss_bean_type"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">主梁数量</td>
+        <td width="100" height="50" align="center"><input id="ss_bean_num"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">横梁形式</td>
+        <td width="100" height="50" align="center"><input id="ss_crossbeam_type"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">桥下限高</td>
+        <td width="100" height="50" align="center"><input id="ss_limit_height"></td>
+    </tr>
+    <tr>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">支座形式</td>
+        <td width="100" height="50" align="center"><input id="ss_bearing_type"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">支座数量</td>
+        <td width="100" height="50" align="center"><input id="ss_bearing_num"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">桥面结构</td>
+        <td width="100" height="50" align="center"><input id="ss_deck_structure"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">伸缩缝形式</td>
+        <td width="100" height="50" align="center"><input id="ss_expansion"></td>
+    </tr>
+    <tr>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">伸缩缝数量</td>
+        <td width="100" height="50" align="center"><input id="ss_expansion_joint_num"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5"></td>
+        <td width="100" height="50" align="center"><input></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5"></td>
+        <td width="100" height="50" align="center"><input></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5"></td>
+        <td width="100" height="50" align="center"><input></td>
+    </tr>
+
+<!--    上部结构*/-->
+
+<!--    /*下部结构-->
+    <tr>
+        <th width="100" height="50" align="center" bgcolor="#fff3e5" colspan="8">下部结构</th>
+    </tr>
+    <tr>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">桥墩形式</td>
+        <td width="100" height="50" align="center"><input id="bs_pier_type"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">桥墩数量</td>
+        <td width="100" height="50" align="center"><input id="bs_pier_num"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">桥墩标高</td>
+        <td width="100" height="50" align="center"><input id="bs_pier_elevation"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">桥台形式</td>
+        <td width="100" height="50" align="center"><input id="bs_bank_pier_type"></td>
+    </tr>
+    <tr>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">桥台数量</td>
+        <td width="100" height="50" align="center"><input id="bs_bank_pier_num"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5">桥台标高</td>
+        <td width="100" height="50" align="center"><input id="bs_bank_pier_elevation"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5"></td>
+        <td width="100" height="50" align="center"></td>
+        <td width="100" height="50" align="center" bgcolor="#fff3e5"></td>
+        <td width="100" height="50" align="center"></td>
+    </tr>
+<!--    下部结构*/-->
+</table>
+
+<!--<script>-->
+<!--   var d =  document.getElementsByTagName("input")-->
+<!--   for(var i =0;i<d.length;i++)-->
+<!--   {-->
+<!--       alert(d[i].value)-->
+<!--   }-->
+<!--</script>-->
+<script>
+    $("#jump").click(function () {
+        window.location.href="Map.html";
+    })
+</script>
+<!--资料查询-->
+<script>
+    $("#b_search").click(function (){
+        var id=$("#id_input").val();
+        // alert(id);
+        var d={
+            "b_operation":"search",
+            "id":id
+        }
+        $.ajax({
+            type:"get",
+            url:"/b_search",
+            dataType:"json",
+            data:d,
+            success:function (data){
+                // 一般资料
+                $("#b_name").val(data.code.name)
+                $("#type_id_input").val(data.code.bi_type)
+                $("#b_area").val(data.code.area)
+                $("#b_lng").val(data.code.lng)
+                $("#b_lat").val(data.code.lat)
+                $("#b_length").val(data.code.gi_overall_length)
+                $("#b_width").val(data.code.gi_overall_width)
+                $("#gi_supervision_unit").val(data.code.gi_supervision_unit)
+                // 上部结构
+                $("#ss_bean_type").val(data.code.ss_bean_type)
+                $("#ss_bean_num").val(data.code.ss_bean_num)
+                $("#ss_crossbeam_type").val(data.code.ss_crossbeam_type)
+                $("#ss_limit_height").val(data.code.ss_limit_height)
+                $("#ss_bearing_type").val(data.code.ss_bearing_type)
+                $("#ss_bearing_num").val(data.code.ss_bearing_num)
+                $("#ss_deck_structure").val(data.code.ss_deck_structure)
+                $("#ss_expansion").val(data.code.ss_expansion)
+                $("#ss_expansion_joint_num").val(data.code.ss_expansion_joint_num)
+                // 下部结构
+                $("#bs_pier_type").val(data.code.bs_pier_type)
+                $("#bs_pier_num").val(data.code.bs_pier_num)
+                $("#bs_pier_elevation").val(data.code.bs_pier_elevation)
+                $("#bs_bank_pier_type").val(data.code.bs_bank_pier_type)
+                $("#bs_bank_pier_num").val(data.code.bs_bank_pier_num)
+                $("#bs_bank_pier_elevation").val(data.code.bs_bank_pier_elevation)
+            }
+        })
+    })
+</script>
+<!--资料插入-->
+
+<script>
+    $("#b_insert").click(function (){
+        var d={
+            // 一般资料
+            "b_operation":"insert",
+            "b_no":$("#id_input").val(),
+            "b_type":$("#type_id_input").val(),
+            "b_name":$("#b_name").val(),
+            "b_area":$("#b_area").val(),
+            "b_lng":$("#b_lng").val(),
+            "b_lat":$("#b_lat").val(),
+            "b_length":$("#b_length").val(),
+            "b_width":$("#b_width").val(),
+            "b_gi_supervision_unit":$("#gi_supervision_unit").val(),
+            // 上部结构
+            "ss_bean_type":$("#ss_bean_type").val(),
+            "ss_bean_num":$("#ss_bean_num").val(),
+            "ss_crossbeam_type":$("#ss_crossbeam_type").val(),
+            "ss_limit_height":$("#ss_limit_height").val(),
+            "ss_bearing_type":$("#ss_bearing_type").val(),
+            "ss_bearing_num":$("#ss_bearing_num").val(),
+            "ss_deck_structure":$("#ss_deck_structure").val(),
+            "ss_expansion":$("#ss_expansion").val(),
+            "ss_expansion_joint_num":$("#ss_expansion_joint_num").val(),
+            // 下部结构
+            "bs_pier_type":$("#bs_pier_type").val(),
+            "bs_pier_num":$("#bs_pier_num").val(),
+            "bs_pier_elevation":$("#bs_pier_elevation").val(),
+            "bs_bank_pier_type":$("#bs_bank_pier_type").val(),
+            "bs_bank_pier_num":$("#bs_bank_pier_num").val(),
+            "bs_bank_pier_elevation":$("#bs_bank_pier_elevation").val(),
+        }
+        $.ajax({
+            type:"get",
+            url:"/b_search",
+            dataType:"json",
+            data:d,
+            success:function (data){
+                alert("插入成功")
+            }
+        })
+    })
+</script>
+<script>
+    $("#b_delete").click(function (){
+        var d={
+            // 一般资料
+            "b_operation":"delete",
+            "id":$("#id_input").val()
+        }
+        $.ajax({
+            type:"get",
+            url:"/b_search",
+            dataType:"json",
+            data:d,
+            success:function (data){
+                alert("删除成功")
+            }
+        })
+    })
+</script>
+</body>
+</html>

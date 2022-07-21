@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>常规定期检查--梁式桥</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="css/Frequent2.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function form_show() {
+            $("#form_2").show();
+        }
+
+        function setHiddenRow(oTable) {
+            for (var i = 0; i < oTable.rows.length; i++) {
+                oTable.rows[i].style.display = oTable.rows[i].style.display == "none" ? "" : "none";
+            }
+        }
+
+        function test() {
+            for (var i = 0; i < 100; i++)
+                //上部结构
+                $("#table_2_col1").hide();
+            $("#table_2_col2").hide();
+            $("#table_2_col3").hide();
+            $("#table_2_col4").hide();
+            $("#table_2_col5").hide();
+            $("#table_2_col6").hide();
+            $("#table_2_col7").hide();
+            $("#table_2_col8").hide();
+            $("#table_2_col9").hide();
+            $("#table_2_col10").hide();
+            $("#table_2_col11").hide();
+            $("#table_2_col12").hide();
+            $("#table_2_col13").hide();
+            $("#table_2_col14").hide();
+            $("#table_2_col15").hide();
+            $("#table_2_col16").hide();
+            $("#table_2_col17").hide();
+            $("#table_2_col18").hide();
+
+            // 下部结构
+            $("#table_3_col1").hide();
+            $("#table_3_col2").hide();
+            $("#table_3_col3").hide();
+            $("#table_3_col4").hide();
+            $("#table_3_col5").hide();
+            $("#table_3_col6").hide();
+            $("#table_3_col7").hide();
+            $("#table_3_col8").hide();
+            $("#table_3_col9").hide();
+            $("#table_3_col10").hide();
+            $("#table_3_col11").hide();
+            $("#table_3_col12").hide();
+        }
+
+        // 梁桥
+        function bridge_type1() {
+            //上部结构
+            // $("#table_2_col2").hide();
+            $("#table_2_row2").hide();
+            $("#table_2_col3").hide();
+            $("#table_2_col4").hide();
+            $("#table_2_col6").hide();
+            $("#table_2_col7").hide();
+            $("#table_2_col8").hide();
+            $("#table_2_col9").hide();
+            $("#table_2_col10").hide();
+            $("#table_2_col11").hide();
+            $("#table_2_col12").hide();
+            $("#table_2_col13").hide();
+            $("#table_2_col14").hide();
+            $("#table_2_col15").hide();
+            $("#table_2_col16").hide();
+            $("#table_2_col17").hide();
+            $("#table_2_col18").hide();
+
+            // 下部结构
+            $("#table_3_col5").hide();
+            $("#table_3_col6").hide();
+            $("#table_3_col12").hide();
+        }
+
+        // 桁架桥
+        function bridge_type2() {
+            //上部结构
+            $("#table_2_col1").hide();
+            $("#table_2_col2").hide();
+            $("#table_2_col3").hide();
+            $("#table_2_col5").hide();
+            $("#table_2_col7").hide();
+            $("#table_2_col9").hide();
+            $("#table_2_col10").hide();
+            $("#table_2_col11").hide();
+            $("#table_2_col12").hide();
+            $("#table_2_col15").hide();
+            $("#table_2_col16").hide();
+            $("#table_2_col17").hide();
+            $("#table_2_col18").hide();
+
+            // 下部结构
+            $("#table_3_col5").hide();
+            $("#table_3_col6").hide();
+            $("#table_3_col12").hide();
+        }
+
+        //拱桥--无拱上构造
+        function bridge_type3() {
+            //上部结构
+            $("#table_2_col1").hide();
+            $("#table_2_col2").hide();
+            $("#table_2_col3").hide();
+            $("#table_2_col4").hide();
+            $("#table_2_col6").hide();
+            $("#table_2_col7").hide();
+            $("#table_2_col8").hide();
+            $("#table_2_col9").hide();
+            $("#table_2_col10").hide();
+            $("#table_2_col11").hide();
+            $("#table_2_col12").hide();
+            $("#table_2_col13").hide();
+            $("#table_2_col14").hide();
+            $("#table_2_col16").hide();
+            $("#table_2_col17").hide();
+            $("#table_2_col18").hide();
+
+            // 下部结构
+            $("#table_3_col2").hide();
+            $("#table_3_col3").hide();
+            $("#table_3_col4").hide();
+            $("#table_3_col5").hide();
+            $("#table_3_col7").hide();
+            $("#table_3_col8").hide();
+            $("#table_3_col9").hide();
+            $("#table_3_col10").hide();
+            $("#table_3_col12").hide();
+        }
+
+        //拱桥--有拱上构造
+        function bridge_type4() {
+            //上部结构
+            $("#table_2_col1").hide();
+            $("#table_2_col2").hide();
+            $("#table_2_col3").hide();
+            $("#table_2_col4").hide();
+            $("#table_2_col6").hide();
+            $("#table_2_col7").hide();
+            $("#table_2_col8").hide();
+            $("#table_2_col9").hide();
+            $("#table_2_col10").hide();
+            $("#table_2_col11").hide();
+            $("#table_2_col12").hide();
+            $("#table_2_col13").hide();
+            $("#table_2_col14").hide();
+            $("#table_2_col15").hide();
+            $("#table_2_col18").hide();
+
+            // 下部结构
+            $("#table_3_col2").hide();
+            $("#table_3_col3").hide();
+            $("#table_3_col4").hide();
+            $("#table_3_col5").hide();
+            $("#table_3_col7").hide();
+            $("#table_3_col8").hide();
+            $("#table_3_col9").hide();
+            $("#table_3_col10").hide();
+            $("#table_3_col12").hide();
+        }
+
+        //刚构桥
+        function bridge_type5() {
+            //桥面系
+
+            //上部结构
+            $("#table_2_col2").hide();
+            $("#table_2_col3").hide();
+            $("#table_2_col4").hide();
+            $("#table_2_col5").hide();
+            $("#table_2_col6").hide();
+            $("#table_2_col7").hide();
+            $("#table_2_col8").hide();
+            $("#table_2_col9").hide();
+            $("#table_2_col10").hide();
+            $("#table_2_col11").hide();
+            $("#table_2_col13").hide();
+            $("#table_2_col14").hide();
+            $("#table_2_col15").hide();
+            $("#table_2_col16").hide();
+            $("#table_2_col17").hide();
+            $("#table_2_col18").hide();
+
+            //下部结构
+            $("#table_3_col5").hide();
+            $("#table_3_col6").hide();
+            $("#table_3_col12").hide();
+        }
+
+        // 悬臂+挂梁
+        function bridge_type6() {
+            //桥面系
+
+            //上部结构
+            $("#table_2_col1").hide();
+            $("#table_2_col2").hide();
+            $("#table_2_col3").hide();
+            $("#table_2_col4").hide();
+            $("#table_2_col5").hide();
+            $("#table_2_col6").hide();
+            $("#table_2_col8").hide();
+            $("#table_2_col12").hide();
+            $("#table_2_col13").hide();
+            $("#table_2_col14").hide();
+            $("#table_2_col15").hide();
+            $("#table_2_col16").hide();
+            $("#table_2_col17").hide();
+            $("#table_2_col18").hide();
+            //下部结构
+            $("#table_3_col5").hide();
+            $("#table_3_col6").hide();
+            $("#table_3_col12").hide();
+        }
+
+        // 人行天桥--梁桥
+        function bridge_type7() {
+            //桥面系
+            $("#table_1_col2").hide();
+            $("#table_1_col5").hide();
+            //上部结构
+            $("#table_2_col2").hide();
+            $("#table_2_col3").hide();
+            $("#table_2_col4").hide();
+            $("#table_2_col6").hide();
+            $("#table_2_col7").hide();
+            $("#table_2_col8").hide();
+            $("#table_2_col9").hide();
+            $("#table_2_col10").hide();
+            $("#table_2_col11").hide();
+            $("#table_2_col12").hide();
+            $("#table_2_col13").hide();
+            $("#table_2_col14").hide();
+            $("#table_2_col15").hide();
+            $("#table_2_col16").hide();
+            $("#table_2_col17").hide();
+
+            //下部结构
+            $("#table_3_col5").hide();
+            $("#table_3_col10").hide();
+            $("#table_3_col12").hide();
+        }
+
+        // 人行天桥--钢桁架桥
+        function bridge_type8() {
+            //桥面系
+            $("#table_1_col2").hide();
+            $("#table_1_col5").hide();
+            //上部结构
+            $("#table_2_col1").hide();
+            $("#table_2_col2").hide();
+            $("#table_2_col3").hide();
+            $("#table_2_col5").hide();
+            $("#table_2_col7").hide();
+            $("#table_2_col9").hide();
+            $("#table_2_col10").hide();
+            $("#table_2_col11").hide();
+            $("#table_2_col12").hide();
+            $("#table_2_col15").hide();
+            $("#table_2_col16").hide();
+            $("#table_2_col17").hide();
+
+            //下部结构
+            $("#table_3_col5").hide();
+            $("#table_3_col10").hide();
+            $("#table_3_col12").hide();
+        }
+    </script>
+</head>
+
+<body>
+<div>
+    <from>
+        桥梁名称:
+        <div><input id="bridge_name" type="text"></div>
+        <div>
+            <button type="button" id="btn">确定</button>
+        </div>
+        <script>
+
+            // $(function (){
+            //     var bridge_type=$("#bridge_name").val();
+            //     alert(bridge_type);
+            //     if(bridge_type==1){
+            //         $("#col1").hide();
+            //         alert("dsb");
+            //     }
+            // })
+
+            $("#btn").on("click", function () {
+                var bridge_name = $("#bridge_name").val();
+                var url = "/getRegularCheckList";
+                var d = {
+                    "bridge_name": bridge_name
+                }
+               setHiddenRow(table_1);
+               // bridge_type1();
+                $.ajax({
+                    type: "post",
+                    url: url,
+                    dataType: "json",
+                    data: d,
+                    success: function (data) {
+                        alert(data)
+                        if (data.flag == "true") {
+                            alert("sb")
+                            // form_show();
+                             // bridge_type2();
+                         } else {
+                           alert("SB")
+                        }
+                    }
+                })
+            })
+        </script>
+    </from>
+</div>
+<br>
+
+<!--style="display: none"-->
+<div id="form_2">
+    <form id="addInfoForm">
+        <table id="table_0">
+            <thead>
+            <tr>
+                <th colspan="6">桥梁名称（编号）</th>
+                <td colspan="6"><input type="text" value="1"></td>
+                <th colspan="6">巡检单位</th>
+                <td colspan="6"></td>
+            </tr>
+            </thead>
+        </table>
+        <br>
+
+        <table id="table_1">
+            <thead>
+            <tr>
+                <td colspan="24">桥面系</td>
+            </tr>
+            <tr>
+                <td colspan="6">结构名称</td>
+                <td colspan="6">损坏类型</td>
+                <td colspan="6">损坏程度</td>
+                <td colspan="6">备注</td>
+            </tr>
+            </thead>
+            <tbody>
+            <div id="table_1_row1">
+                <tr>
+                    <td rowspan="11" colspan="2" >桥面铺装</td>
+                </tr>
+                <tr id="table_1_row1_type1">
+                    <td colspan="4">网裂或龟裂</td>
+                    <td colspan="6">
+                        <select name="桥面系；桥面铺装；网裂或龟裂">
+                            <option value="无">无</option>
+                            <option value="<3%"><3%</option>
+                            <option value="3%~10%">3%~10%</option>
+                            <option value="10%">10%</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row1_type2">
+                    <td colspan="4">波浪及车辙</td>
+                    <td colspan="6">
+                        <select name="桥面系；桥面铺装；波浪及车辙">
+                            <option value="无">无</option>
+                            <option value="<3%"><3%</option>
+                            <option value="3%~10%">3%~10%</option>
+                            <option value="10%">10%</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row1_type3">
+                    <td colspan="4">坑槽</td>
+                    <td colspan="6">
+                        <select name="桥面系；桥面铺装；坑槽">
+                            <option value="无">无</option>
+                            <option value="<3%"><3%</option>
+                            <option value="3%~10%">3%~10%</option>
+                            <option value="10%">10%</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row1_type4">
+                    <td colspan="4">碎裂或破碎</td>
+                    <td colspan="6">
+                        <select name="桥面系；桥面铺装；碎裂或破碎">
+                            <option value="无">无</option>
+                            <option value="<3%"><3%</option>
+                            <option value="3%~10%">3%~10%</option>
+                            <option value="10%">10%</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row1_type5">
+                    <td colspan="4">坑洞</td>
+                    <td colspan="6">
+                        <select name="桥面系；桥面铺装；坑洞">
+                            <option value="无">无</option>
+                            <option value="1个">1个</option>
+                            <option value="2个">2个</option>
+                            <option value=">=3个">>=3个</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row1_type6">
+                    <td colspan="4">桥面贯通横缝</td>
+                    <td colspan="6">
+                        <select name="桥面系；桥面铺装；桥面贯通横缝">
+                            <option value="无">无</option>
+                            <option value="半贯通">半贯通</option>
+                            <option value="贯通">贯通</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row1_type7">
+                    <td colspan="4">桥面贯通纵缝</td>
+                    <td colspan="6">
+                        <select name="桥面系；桥面铺装；桥面贯通纵缝">
+                            <option value="无">无</option>
+                            <option value="半贯通">半贯通</option>
+                            <option value="贯通">贯通</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row1_type8">
+                    <td colspan="4">人行天桥桥面铺装变形</td>
+                    <td colspan="6">
+                        <select name="桥面系；桥面铺装；人行天桥桥面铺装变形">
+                            <option value="无">无</option>
+                            <option value="<3%"><3%</option>
+                            <option value="3%~10%">3%~10%</option>
+                            <option value="10%">10%</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row1_type9">
+                    <td colspan="4">人行天桥桥面铺装磨损</td>
+                    <td colspan="6">
+                        <select name="桥面系；桥面铺装；人行天桥桥面铺装磨损">
+                            <option value="无">无</option>
+                            <option value="<3%"><3%</option>
+                            <option value="3%~10%">3%~10%</option>
+                            <option value="10%">10%</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row1_type10">
+                    <td colspan="4">人行天桥桥面铺装防滑能力</td>
+                    <td colspan="6">
+                        <select name="桥面系；桥面铺装；人行天桥桥面铺装防滑能力">
+                            <option value="足够">足够</option>
+                            <option value="临界">临界</option>
+                            <option value="不足">不足</option>
+                        </select>
+                    </td>
+                </tr>
+            </div>
+
+            <div>
+                <tr id="table_1_row2">
+                    <td rowspan="3" colspan="2">桥头平顺</td>
+                </tr>
+                <tr id="table_1_row2_type1">
+                    <td colspan="4">桥头沉降</td>
+                    <td colspan="6">
+                        <select name="桥面系；桥头平顺；桥头沉降">
+                            <option value="无">无</option>
+                            <option value="轻微">轻微</option>
+                            <option value="明显">明显</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row2_type2">
+                    <td colspan="4">台背下沉</td>
+                    <td colspan="6">
+                        <select name="桥面系；桥头平顺；台背下沉">
+                            <option value="<2cm"><2cm</option>
+                            <option value="2cm~5cm">2cm~5cm</option>
+                            <option value=">5cm">>5cm</option>
+                        </select>
+                    </td>
+                </tr>
+            </div>
+
+            <div>
+                <tr id="table_1_row3">
+                    <td rowspan="10" colspan="2">伸缩装置</td>
+                </tr>
+                <tr id="table_1_row3_type1">
+                    <td colspan="4">接缝处铺装碎边</td>
+                    <td colspan="6">
+                        <select name="桥面系；伸缩装置；接缝处铺装碎边">
+                            <option value="无">无</option>
+                            <option value="轻微">轻微</option>
+                            <option value="严重">严重</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row3_type2">
+                    <td colspan="4">螺帽松动</td>
+                    <td colspan="6">
+                        <select name="桥面系；伸缩装置；螺帽松动">
+                            <option value="无">无</option>
+                            <option value="1个~5个">1个~5个</option>
+                            <option value="5个">>5个</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row3_type3">
+                    <td colspan="4">缝内沉积物阻塞</td>
+                    <td colspan="6">
+                        <select name="桥面系；伸缩装置；缝内沉积物阻塞">
+                            <option value="无">无</option>
+                            <option value="少量">少量</option>
+                            <option value="严重">严重</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row3_type4">
+                    <td colspan="4">止水带破损、老化</td>
+                    <td colspan="6">
+                        <select name="桥面系；伸缩装置；止水带破损、老化">
+                            <option value="无">无</option>
+                            <option value="轻微">轻微</option>
+                            <option value="严重">严重</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row3_type5">
+                    <td colspan="4">钢材料破损</td>
+                    <td colspan="6">
+                        <select name="桥面系；伸缩装置；钢材料破损">
+                            <option value="无">无</option>
+                            <option value="轻微">轻微</option>
+                            <option value="严重">严重</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row3_type6">
+                    <td colspan="4">接缝处高差</td>
+                    <td colspan="6">
+                        <select name="桥面系；伸缩装置；接缝处高差">
+                            <option value="无">无</option>
+                            <option value="轻微">轻微</option>
+                            <option value="严重">严重</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row3_type7">
+                    <td colspan="4">钢材料翘曲变形</td>
+                    <td colspan="6">
+                        <select name="桥面系；伸缩装置；钢材料翘曲变形">
+                            <option value="无">无</option>
+                            <option value="轻微">轻微</option>
+                            <option value="严重">严重</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row3_type8">
+                    <td colspan="4">结构缝宽异常</td>
+                    <td colspan="6">
+                        <select name="桥面系；伸缩装置；结构缝宽异常">
+                            <option value="正常">正常</option>
+                            <option value="略有变化">略有变化</option>
+                            <option value="卡死">卡死</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row3_type9">
+                    <td colspan="4">伸缩缝处异常声响</td>
+                    <td colspan="6">
+                        <select name="桥面系；伸缩装置；伸缩缝处异常声响">
+                            <option value="无">无</option>
+                            <option value="轻微">轻微</option>
+                            <option value="严重">严重</option>
+                        </select>
+                    </td>
+                </tr>
+            </div>
+
+            <div>
+                <tr id="table_1_row4">
+                    <td rowspan="5" colspan="2">排水系统</td>
+                </tr>
+                <tr id="table_1_row4_type1">
+                    <td colspan="4">泄水管阻塞</td>
+                    <td colspan="6">
+                        <select name="桥面系；排水系统；泄水管阻塞">
+                            <option value="<5%"><5%</option>
+                            <option value="5%~20%">5%~20%</option>
+                            <option value=">20%">>20%</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row4_type2">
+                    <td colspan="4">残缺脱落</td>
+                    <td colspan="6">
+                        <select name="桥面系；排水系统；残缺脱落">
+                            <option value="<5%"><5%</option>
+                            <option value="5%~20%">5%~20%</option>
+                            <option value=">20%">>20%</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row4_type3">
+                    <td colspan="4">桥面积水</td>
+                    <td colspan="6">
+                        <select name="桥面系；排水系统；桥面积水">
+                            <option value="无">无</option>
+                            <option value="个别处">个别处</option>
+                            <option value="多处">多处</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row4_type4">
+                    <td colspan="4">防水层</td>
+                    <td colspan="6">
+                        <select name="桥面系；排水系统；防水层">
+                            <option value="完好">完好</option>
+                            <option value="渗水">渗水</option>
+                            <option value="老化">老化</option>
+                        </select>
+                    </td>
+                </tr>
+            </div>
+
+            <div>
+                <tr id="table_1_row5">
+                    <td rowspan="4" colspan="2">人行道</td>
+                </tr>
+                <tr id="table_1_row5_type1">
+                    <td colspan="4">网裂</td>
+                    <td colspan="6">
+                        <select name="桥面系；排水系统；网裂">
+                            <option value="<10%"><10%</option>
+                            <option value="10%~20%">10%~20%</option>
+                            <option value=">20%">>20%</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row5_type2">
+                    <td colspan="4">松动或变形</td>
+                    <td colspan="6">
+                        <select name="桥面系；排水系统；松动或变形">
+                            <option value="<5%"><5%</option>
+                            <option value="5%~10%">5%~10%</option>
+                            <option value=">10%">>10%</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row5_type3">
+                    <td colspan="4">残缺</td>
+                    <td colspan="6">
+                        <select name="桥面系；排水系统；残缺">
+                            <option value="<5%"><5%</option>
+                            <option value="5%~10%">5%~10%</option>
+                            <option value=">10%">>10%</option>
+                        </select>
+                    </td>
+                </tr>
+            </div>
+
+
+            <div>
+                <tr id="table_1_row6">
+                    <td rowspan="4" colspan="2">栏杆或护栏</td>
+                </tr>
+                <tr id="table_1_row6_type1">
+                    <td colspan="4">露筋锈蚀</td>
+                    <td colspan="6">
+                        <select name="桥面系；栏杆或护栏；露筋锈蚀">
+                            <option value="<5%"><5%</option>
+                            <option value="5%~20%">5%~20%</option>
+                            <option value=">20%">>20%</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row6_type2">
+                    <td colspan="4">松动错位</td>
+                    <td colspan="6" >
+                        <select name="桥面系；栏杆或护栏；松动错位">
+                            <option value="轻微">轻微</option>
+                            <option value="中等">中等</option>
+                            <option value="严重">严重</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="table_1_row6_type3">
+                    <td colspan="4">丢失残缺</td>
+                    <td colspan="6">
+                        <select name="桥面系；栏杆或护栏；丢失残缺">
+                            <option value="轻微">轻微</option>
+                            <option value="中等">中等</option>
+                            <option value="严重">严重</option>
+                        </select>
+                    </td>
+                </tr>
+            </div>
+
+
+            </tbody>
+        </table>
+        <br>
+
+        <table id="table_2">
+            <thead>
+            <tr>
+                <td colspan="24">上部结构</td>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr id="table_2_row1">
+                <td colspan="6">主梁</td>
+            </tr>
+            <tr id="table_2_row2">
+                <td colspan="6">主桁架</td>
+            </tr>
+
+
+            <div>
+
+            </div>
+            <tr id="table_2_row3">
+                <td colspan="6">主拱圈</td>
+            </tr>
+            <tr id="table_2_row3_type1">
+                <td colspan="4">桥面贯通横缝</td>
+                <td colspan="6">
+                    <select>
+                        <option value="table_1_row3_type1_level0"><5%</option>
+                        <option value="table_1_row3_type1_level1">5%~20%</option>
+                        <option value="table_1_row3_type1_level2">>20%</option>
+                    </select>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td id="table_2_col4" colspan="6">横梁</td>
+            </tr>
+            <tr>
+                <td id="table_2_col5" colspan="6">横向联系</td>
+            </tr>
+            <tr>
+                <td id="table_2_col6" colspan="6">主节点</td>
+            </tr>
+            <tr>
+                <td id="table_2_col7" colspan="6">挂梁</td>
+            </tr>
+            <tr>
+                <td id="table_2_col8" colspan="6">连接件</td>
+            </tr>
+            <tr>
+                <td id="table_2_col9" colspan="6">悬臂梁</td>
+            </tr>
+            <tr>
+                <td id="table_2_col10" colspan="6">挂梁支座</td>
+            </tr>
+            <tr>
+                <td id="table_2_col11" colspan="6">防落梁装置</td>
+            </tr>
+            <tr>
+                <td id="table_2_col12" colspan="6">横向连接</td>
+            </tr>
+            <tr>
+                <td id="table_2_col13" colspan="6">桁片</td>
+            </tr>
+            <tr>
+                <td id="table_2_col14" colspan="6">纵梁</td>
+            </tr>
+            <tr>
+                <td id="table_2_col15" colspan="6">主拱圈（桁）</td>
+            </tr>
+            <tr>
+                <td id="table_2_col16" colspan="6">主拱圈</td>
+            </tr>
+            <tr>
+                <td id="table_2_col17" colspan="6">拱上构造</td>
+            </tr>
+            <tr>
+                <td id="table_2_col18" colspan="6">外部装饰板</td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+
+        <table id="table_3">
+            <thead>
+            <tr>
+                <td colspan="24">下部结构</td>
+            </tr>
+            <tr>
+                <td colspan="6">结构名称</td>
+                <td colspan="6">损坏类型</td>
+                <td colspan="6">损坏程度</td>
+                <td colspan="6">备注</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td id="pier" rowspan="7">桥墩</td>
+            </tr>
+
+            <tr id="table_3_row1">
+                <td id="table_3_col1" colspan="5">支座</td>
+            </tr>
+            <tr>
+                <td id="table_3_col2" colspan="5">盖梁</td>
+            </tr>
+            <tr>
+                <td id="table_3_col3" colspan="5">墩身</td>
+            </tr>
+            <tr>
+                <td id="table_3_col4" colspan="5">基础</td>
+            </tr>
+            <tr>
+                <td id="table_3_col5" colspan="5">拱脚</td>
+            </tr>
+            <tr>
+                <td id="table_3_col6" colspan="5">外部装饰板</td>
+            </tr>
+
+            <tr>
+                <td rowspan="6">桥台</td>
+                <td id="table_3_col7" colspan="5">台帽</td>
+            </tr>
+            <tr>
+                <td id="table_3_col8" colspan="5">台身</td>
+            </tr>
+            <tr>
+                <td id="table_3_col9" colspan="5">基础</td>
+            </tr>
+            <tr>
+                <td id="table_3_col10" colspan="5">耳墙（翼墙）</td>
+            </tr>
+            <tr>
+                <td id="table_3_col11" colspan="5">支座</td>
+            </tr>
+            <tr>
+                <td id="table_3_col12" colspan="5">拱脚</td>
+            </tr>
+            <tr>
+                <td id="table_3_col13" colspan="6">挡土墙</td>
+            </tr>
+            <tr>
+                <td id="table_3_col14" colspan="6">护坡及河床冲刷情况</td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <button type="button" id="addInfo">提交</button>
+        </div>
+
+    </form>
+</div>
+</body>
+<script>
+$('#addInfo').on("click", function () {
+
+var info = JSON.stringify($('#addInfoForm').serializeArray())
+alert("序列化为json格式为：" + info);
+
+var url = "/rugularCheckInfo"
+
+$.ajax({
+type: "post",
+url: url,
+dataType: "json",
+data: {
+info: info
+},
+async: false,
+success: function (data) {
+//showData(data)
+},
+error: function () {
+alert("error")
+}
+})
+})
+</script>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定期巡查</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="css/Frequent2.css" rel="stylesheet">
+    <link href="css/newStyle.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ><a class="icon-bar" href="http://localhost:8070/Map.html">桥梁检测系统</a>
+                </li>
+                <li class="active"><a href="#">基本管理</a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a>欢迎您,admin</a>
+                </li>
+                <li><a href="#">安全退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="div_1">
+<form>
+    <table id="table_1">
+        <thead>
+        <tr>
+            <th colspan="6">桥梁名称（编号）</th>
+            <th colspan="6"><input type="text"></th>
+            <th colspan="6">巡检单位</th>
+            <th colspan="6"><input type="text"></th>
+        </tr>
+        <tr>
+            <td colspan="4">检查项</td>
+            <td colspan="4">完好</td>
+            <td colspan="4">损坏类型</td>
+            <td colspan="4">损坏程度（数量）</td>
+            <td colspan="4">损坏位置</td>
+            <td colspan="4">备注</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="4">桥名牌</td>
+            <td id="two_2" colspan="4">
+                <input type="radio" name="intact_2" value="完好" checked>是
+                <input type="radio" name="intact_2" value="否" >否
+            </td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+        </tr>
+        <tr>
+            <td colspan="4">桥面铺装</td>
+            <td colspan="4">
+                <input type="radio" name="intact_3" value="完好" checked>是
+                <input type="radio" name="intact_3" value="否" >否
+            </td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+        </tr>
+        <tr>
+            <td colspan="4">钢结构物</td>
+            <td colspan="4">
+                <input type="radio" name="intact_4" value="完好" checked>是
+                <input type="radio" name="intact_4" value="否" >否
+            </td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+        </tr>
+        <tr>
+            <td colspan="4">人行道</td>
+            <td colspan="4">
+                <input type="radio" name="intact_5" value="完好" checked>是
+                <input type="radio" name="intact_5" value="否" >否
+            </td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+        </tr>
+        <tr>
+            <td colspan="4">伸缩缝</td>
+            <td colspan="4">
+                <input type="radio" name="intact_6" value="完好" checked>是
+                <input type="radio" name="intact_6" value="no" >否
+            </td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+        </tr>
+        <tr>
+            <td colspan="4">栏杆</td>
+            <td colspan="4">
+                <input type="radio" name="intact_7" value="完好" checked>是
+                <input type="radio" name="intact_7" value="否" >否
+            </td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+        </tr>
+        <tr>
+            <td colspan="4">排水设施</td>
+            <td colspan="4">
+                <input type="radio" name="intact_8" value="完好" checked>是
+                <input type="radio" name="intact_8" value="否" >否
+            </td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+        </tr>
+        <tr>
+            <td colspan="4">桥路连接位置</td>
+            <td colspan="4">
+                <input type="radio" name="intact_9" value="完好" checked>是
+                <input type="radio" name="intact_9" value="否" >否
+            </td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+        </tr>
+        <tr>
+            <td colspan="4">上部结构</td>
+            <td colspan="4">
+                <input type="radio" name="intact_10" value="完好" checked>是
+                <input type="radio" name="intact_10" value="否" >否
+            </td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+        </tr>
+        <tr>
+            <td colspan="4">支座</td>
+            <td colspan="4">
+                <input type="radio" name="intact_11" value="完好" checked>是
+                <input type="radio" name="intact_11" value="否" >否
+            </td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+        </tr>
+        <tr>
+            <td colspan="4">下部结构</td>
+            <td colspan="4">
+                <input type="radio" name="intact_12" value="完好" checked>是
+                <input type="radio" name="intact_12" value="否" >否
+            </td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+            <td colspan="4"><input type="text"></td>
+        </tr>
+        <tr>
+            <td colspan="6">巡查人</td>
+            <td colspan="6"><input type="text"></td>
+            <td colspan="6">巡查日期</td>
+            <td colspan="3"><input type="text"></td>
+        </tr>
+        </tbody>
+    </table>
+<div class="div_3">
+    <button id="addInfo" type="button">提交</button>
+    <button id="Check" type="button">查看记录</button>
+</div>
+<script>
+    $("#addInfo").on("click",function (){
+        var tb = document.getElementsByTagName("input");
+        var arry = new Array();
+        var a = 0;
+        for (var i = 0; i < tb.length; i++) {
+            if (tb[i].type == "radio") {
+                if (tb[i].checked) {
+                    arry[a] = tb[i].value;
+                    a++;
+                }
+            }
+            if (tb[i].type == "text") {
+                arry[a] = tb[i].value;
+                a++;
+            }
+        }
+        var url="/Frequent_check_Servlet";
+        var d = {
+            "arry1": arry
+        }
+        $.ajax({
+            type: "get",
+            url:url,
+            dataType: "json",
+            data: d,
+            success: function (data) {
+                if(data.flag=="true"){
+                    alert("提交成功");
+                }else{
+                    alert("error");
+                }
+            }
+        })
+    })
+
+    $("#Check").on("click",function (){
+
+    })
+</script>
+</form>
+</div>
+</body>
+
+</html>

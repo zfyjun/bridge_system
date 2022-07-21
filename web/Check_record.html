@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/Frequent2.css" rel="stylesheet">
+    <link href="css/newStyle.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>记录查看</title>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ><a class="icon-bar" href="http://localhost:8070/Map.html">桥梁检测系统</a>
+                </li>
+                <li class="active"><a href="#">基本管理</a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a>欢迎您,admin</a>
+                </li>
+                <li><a href="#">安全退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="record_div_1">
+    <from>
+        <table>
+            <tr>
+                <td><input id="bridge_id" type="text">桥梁编号</td>
+                <td><input id="check_data" type="text">检查日期</td>
+            </tr>
+        </table>
+        <div>
+            <button id="btn" type="submit">查找</button>
+        </div>
+        <script>
+            $("#btn").on("click",function (){
+                var bridge_id=$("#bridge_id").val();
+                var check_data=$("#check_data").val();
+                var check_table=document.getElementById("check_table");
+                alert(bridge_id);
+                alert(check_data);
+                var url="/Check_Servlet";
+                var d = {
+                    "bridge_id": bridge_id,
+                    "check_data":check_data
+                }
+                $.ajax({
+                    type: "get",
+                    url:url,
+                    dataType: "json",
+                    data: d,
+                    success: function (data) {
+                        alert("success");
+                        var rows=check_table.rows;
+                        for(var j=rows.length;j>0;j--){
+                            rows[j].remove();
+                        }
+                        var rowhead = document.createElement('tr');
+                        rowhead.innerHTML= "<td colSpan='3'>桥梁编号</td>"+"<td colSpan='3'>"+data.f2[0].bridge_id+"</td>"
+                            +"<td colSpan='3'>检查单位</td>"+"<td colSpan='3'>"+data.f2[0].check_unit+"</td>"
+                            +"<td colSpan='3'>检查人</td>"+"<td colSpan='3'>"+data.f2[0].check_people+"</td>"
+                            +"<td colSpan='3'>检查时间</td>"+"</td>"+"<td colSpan='3'>"+data.f2[0].check_data+"</td>";
+                        check_table.appendChild(rowhead);
+                        var rowtitle=document.createElement('tr');
+                        rowtitle.innerHTML="<td colSpan='4'>检查项</td>"+"<td colSpan='4'>完好</td>"+"<td colSpan='4'>损坏类型</td>"
+                            +"<td colSpan='4'>损坏程度(数量)</td>"+"<td colSpan='4'>损坏位置</td>"+"<td colSpan='4'>备注</td>";
+                        check_table.appendChild(rowtitle);
+                        for (var i = 0; i < data.f2.length; i++) {
+                            var row = document.createElement('tr');
+                            row.innerHTML = "<td colspan='4'>" + data.f2[i].checkItem + "</td>" + "<td colspan='4'>" + data.f2[i].perfect + "</td>"
+                                + "<td colspan='4'>" + data.f2[i].damageType + "</td>" + "<td colspan='4'>" + data.f2[i].damageDegree + "</td>"
+                                + "<td colspan='4'>" + data.f2[i].damageLocation + "</td>"
+                                + "<td colspan='4'>" + data.f2[i].remark + "</td>";
+                            check_table.appendChild(row);
+                        }
+                    }
+                })
+            })
+        </script>
+    </from>
+</div>
+
+<div>
+    <table id="check_table">
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<script>
+$("#jump").click(function () {
+window.location.href="Map.html";
+})
+</script>
+</body>
+</html>

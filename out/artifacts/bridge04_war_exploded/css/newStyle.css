@@ -1,0 +1,32 @@
+.evenrowcolor{
+    width: 100%;
+    align:center;
+    background-color: #ffebcd;
+}
+.oddrowcolor{
+    width: 100%;
+    align:center;
+}
+.Col_head{
+    width: 100%;
+    align:center;
+    background-color: #F5FAFA;
+}
+.Col_body{
+    width: 100%;
+    align:center;
+}
+.div_1{
+    margin:auto;
+    width: 90%;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    /*background-color:*/
+}
+.record_div_1{
+    width: 60%;
+}
+.check_div_1{
+    width: 40%;
+}

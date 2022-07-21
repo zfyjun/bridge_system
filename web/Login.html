@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>桥梁管理系统登录页面 - </title>
+    <link rel="stylesheet" type="text/css" href="login/zui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="login/login.css" media="all">
+    <link href="login/animate.min.css" rel="stylesheet">
+    <link href="login/font-awesome.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style> body { background-image: url(images/4.jpg);}</style>
+</head>
+<body>
+<div id="main-box"></div>
+<div id="main-content">
+    <div class="login-body  animated fadeInLeft">
+        <div class="login-main pr">
+<!--            action="/Bridge_war_exploded/loginServlet" method="post"-->
+            <form  class="login-form">
+                <h3> 管理中心 </h3>
+                <h5 style="padding-bottom: 10px"> System Management Center </h5>
+                <!-- 账号登陆 -->
+                <div id="MobileBox" class="item-box"  >
+                    <div class="input-group user-name"> <span class="input-group-addon"><i class="icon-user"></i></span>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="用户名/手机号">
+                    </div>
+                    <div class="input-group password"> <span class="input-group-addon"><i class="icon-lock"></i></span>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="密码">
+                    </div>
+                    <div class="login_btn_panel">
+                        <button id="loginbtn" class=" btn btn-primary btn-block btn-lg" data-ajax="post" type="submit" data-callback="success">登录</button>
+                        <div class="check-tips"></div>
+                    </div>
+                </div>
+                <script>
+                    $("#loginbtn").on("click",function (){
+                        var username=$("#username").val();
+                        var password=$("#password").val();
+                        var d={
+                            "username":username,
+                            "password":password
+                        }
+                        var url="/loginServlet";
+                        $.ajax({
+                            type:"post",
+                            url:url,
+                            dataType:"json",
+                            data:d,
+                            success:function (data){
+                                if(data.userExsit=="true"){
+                                    alert("success")
+                                    window.location.href="Map.html";
+                                }else{
+                                    alert("error")
+                                }
+                            }
+                        })
+                    })
+                </script>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    .copyrights{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
+</style>
+</body>
+</html>
